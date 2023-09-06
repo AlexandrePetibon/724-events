@@ -1,5 +1,16 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
+
+const waitForElement = async (text) => {
+  await waitFor(() => {
+    const element = screen.queryByText(text);
+    if (element) {
+      expect(element).toBeInTheDocument();
+    } else {
+      throw new Error(`Element with text "${text}" not found.`);
+    }
+  });
+};
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -20,25 +31,24 @@ describe("When Form is created", () => {
           bubbles: true,
         })
       );
-      await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+
+      await waitForElement("En cours");
+      await waitForElement("Message envoyé !");
     });
   });
-
 });
-
 
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
-    // to implement
-  })
-  it("a list a people is displayed", () => {
-    // to implement
-  })
+    // à implémenter
+  });
+  it("a list of people is displayed", () => {
+    // à implémenter
+  });
   it("a footer is displayed", () => {
-    // to implement
-  })
+    // à implémenter
+  });
   it("an event card, with the last event, is displayed", () => {
-    // to implement
-  })
+    // à implémenter
+  });
 });

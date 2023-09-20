@@ -14,8 +14,7 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData();
-  const lastEvent = data && data.events && data.events[data.events.length - 1];
+  const { last } = useData();
 
   return (
     <>
@@ -120,10 +119,10 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre dernière prestation</h3>
-          {lastEvent && <EventCard
-            imageSrc={lastEvent?.cover}
-            title={lastEvent?.title}
-            date={new Date(lastEvent?.date)}
+          {last && <EventCard
+            imageSrc={last?.cover}
+            title={last?.title}
+            date={new Date(last?.date)}
             small
             label="boom"
           />}

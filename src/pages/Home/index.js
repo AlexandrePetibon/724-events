@@ -15,8 +15,6 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
     const { data } = useData();
-    // Dans la const last, on trie les events dans l'ordre du plus récent au plus ancien et 
-    // on indique que last est le premier élément du tableau soit [0]
     const last = data?.events.sort((evtA, evtB) =>
       new Date(evtA.date) < new Date(evtB.date) ? 1 : -1)[0];
 
